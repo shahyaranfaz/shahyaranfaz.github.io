@@ -9,7 +9,7 @@
 - **Colloborators**: Averi Wylie
 - **Programming Language**: Python 3.11
 
-### [cPresser](https://github.com/shahyaranfaz/cPresser))
+### [cPresser](https://github.com/shahyaranfaz/cPresser)
 - **Description**: A high-performance file compression tool that intelligently combines multiple compression algorithms (Delta, RLE, Huffman, LZ77) to achieve optimal file size reduction!
 - **Colloborators**: None
 - **Programming Language**: C
