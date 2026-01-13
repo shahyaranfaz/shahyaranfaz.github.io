@@ -4,12 +4,12 @@
 
 ## Featured Projects
 
-### [Space Invaders](Project1---SpaceInvaders)
+### [Space Invaders](https://github.com/shahyaranfaz/Project1---SpaceInvaders#)
 - **Description**: An interactive 2D shooter game where you must survive the aliens, collect power-ups, and set high scores!
 - **Colloborators**: Averi Wylie
 - **Programming Language**: Python 3.11
 
-### [cPresser](cPresser)
+### [cPresser](https://github.com/shahyaranfaz/cPresser))
 - **Description**: A high-performance file compression tool that intelligently combines multiple compression algorithms (Delta, RLE, Huffman, LZ77) to achieve optimal file size reduction!
 - **Colloborators**: None
 - **Programming Language**: C
