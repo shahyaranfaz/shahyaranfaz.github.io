@@ -4,7 +4,7 @@
 
 ## Featured Projects
 
-### [Space Invaders](https://shahyaranfaz.github.io/Project1---SpaceInvaders/) | [GitHub](https://github.com/shahyaranfaz/Project1---SpaceInvaders)
+### [Space Invaders](https://shahyaranfaz.github.io/SpaceInvaders/) | [GitHub](https://github.com/shahyaranfaz/SpaceInvaders)
 - **Description**: An interactive 2D shooter game where you must survive the aliens, collect power-ups, and set high scores!
 - **Collaborators**: Averi Wylie
 - **Programming Language**: Python 3.11
