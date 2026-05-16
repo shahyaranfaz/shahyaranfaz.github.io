@@ -14,6 +14,10 @@
 - **Collaborators**: None
 - **Programming Language**: C
 
+### [SHAYVERI](https://shahyaranfaz.github.io/SHAYVERI/) | [GitHub](https://github.com/shahyaranfaz/SHAYVERI)
+- **Description**: A UCI compliant chess engine reaching 2800 Elo.
+- **Collaborators**: None
+- **Programming Language**: C++20
 ---
 
 ## Let's Connect!
