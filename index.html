@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shahyar Anfaz</title>
+    <meta
+      name="description"
+      content="Portfolio of Shahyar Anfaz, a Computer Science and Mathematics student at the University of Toronto."
+    >
+    <style>
+      :root {
+        --bg: #050705;
+        --panel: #0b120c;
+        --text: #e8f7e8;
+        --muted: #8ea58f;
+        --green: #9dff9d;
+        --line: #1c321e;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        line-height: 1.55;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+      }
+
+      main {
+        width: min(760px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 72px 0;
+      }
+
+      header {
+        margin-bottom: 56px;
+      }
+
+      .eyebrow {
+        color: var(--green);
+        font-size: 0.82rem;
+        letter-spacing: 0;
+        margin: 0 0 14px;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        color: var(--green);
+        font-size: clamp(2.4rem, 8vw, 5.25rem);
+        line-height: 0.95;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      .intro {
+        color: var(--muted);
+        font-size: 1rem;
+        max-width: 62ch;
+        margin-bottom: 0;
+      }
+
+      section {
+        border-top: 1px solid var(--line);
+        padding-top: 28px;
+        margin-top: 36px;
+      }
+
+      h2 {
+        color: var(--green);
+        font-size: 0.92rem;
+        font-weight: 700;
+        margin-bottom: 22px;
+        text-transform: uppercase;
+      }
+
+      .projects {
+        display: grid;
+        gap: 16px;
+      }
+
+      article {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 18px;
+      }
+
+      .project-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 10px;
+      }
+
+      h3 {
+        color: var(--text);
+        font-size: 1rem;
+        margin-bottom: 0;
+      }
+
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 0.88rem;
+        white-space: nowrap;
+      }
+
+      a {
+        color: var(--green);
+        text-decoration: none;
+      }
+
+      a:hover,
+      a:focus-visible {
+        text-decoration: underline;
+      }
+
+      .summary {
+        color: var(--muted);
+        margin-bottom: 14px;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .meta li {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--text);
+        font-size: 0.82rem;
+        padding: 4px 9px;
+      }
+
+      .contact {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        color: var(--muted);
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.86rem;
+        margin-top: 36px;
+        padding-top: 22px;
+      }
+
+      @media (max-width: 560px) {
+        main {
+          width: min(100% - 24px, 760px);
+          padding: 44px 0;
+        }
+
+        header {
+          margin-bottom: 40px;
+        }
+
+        .project-head {
+          display: block;
+        }
+
+        .links {
+          margin-top: 6px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">portfolio / shahyar anfaz</p>
+        <h1>Shahyar Anfaz</h1>
+        <p class="intro">
+          I am a second-year University of Toronto student studying Computer Science and Mathematics. I build high-performance systems software, from chess engines and NNUE training pipelines to databases, compilers, and low-level tooling.
+        </p>
+      </header>
+
+      <section aria-labelledby="projects-title">
+        <h2 id="projects-title">Featured Projects</h2>
+        <div class="projects">
+          <article>
+            <div class="project-head">
+              <h3>Space Invaders</h3>
+              <div class="links">
+                <a href="https://shahyaranfaz.github.io/SpaceInvaders/">Live</a>
+                <a href="https://github.com/shahyaranfaz/SpaceInvaders">GitHub</a>
+              </div>
+            </div>
+            <p class="summary">
+              A Pygame arcade shooter with custom sprites, 8-direction movement,
+              scaling enemy waves, timed power-ups, and SQLite-backed users,
+              profiles, friends, and leaderboards.
+            </p>
+            <ul class="meta">
+              <li>Python 3.11</li>
+              <li>with Averi Wylie</li>
+            </ul>
+          </article>
+
+          <article>
+            <div class="project-head">
+              <h3>cPresser</h3>
+              <div class="links">
+                <a href="https://shahyaranfaz.github.io/cPresser/">Live</a>
+                <a href="https://github.com/shahyaranfaz/cPresser">GitHub</a>
+              </div>
+            </div>
+            <p class="summary">
+              A lossless C compression tool with a CMake build and interactive
+              CLI. It tests Delta XOR, RLE, Huffman, and LZ77 stages, then keeps
+              only the passes that actually shrink the file.
+            </p>
+            <ul class="meta">
+              <li>C</li>
+              <li>solo project</li>
+            </ul>
+          </article>
+
+          <article>
+            <div class="project-head">
+              <h3>SHAYVERI</h3>
+              <div class="links">
+                <a href="https://shahyaranfaz.github.io/SHAYVERI/">Live</a>
+                <a href="https://github.com/shahyaranfaz/SHAYVERI">GitHub</a>
+              </div>
+            </div>
+            <p class="summary">
+              A UCI-compliant C++20 chess engine with alpha-beta search, Lazy
+              SMP, opening-book support, handcrafted evaluation, and a stronger
+              NNUE path tested near 2800 pool-relative Elo.
+            </p>
+            <ul class="meta">
+              <li>C++20</li>
+              <li>with Averi Wylie</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="contact-title">
+        <h2 id="contact-title">Contact</h2>
+        <div class="contact">
+          <a href="mailto:shahyaranfaz@gmail.com">shahyaranfaz@gmail.com</a>
+          <a href="https://www.linkedin.com/in/shahyaranfaz/">LinkedIn</a>
+          <a href="https://github.com/shahyaranfaz">GitHub</a>
+        </div>
+      </section>
+
+      <footer>
+        <p>© Shahyar Anfaz</p>
+      </footer>
+    </main>
+  </body>
+</html>
