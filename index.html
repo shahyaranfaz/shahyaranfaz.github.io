@@ -267,7 +267,7 @@
           name: "SHAYVERI",
           slug: "SHAYVERI",
           summary: "A UCI-compliant C++20 chess engine with an extended alpha-beta search, Lazy SMP, a custom opening-book, and an NNUE evaluation that reaches 3300 pool-relative Elo.",
-          meta: ["C++20", "with Averi Wylie"],
+          meta: ["C++20", "NNUE", "UCI", "with Averi Wylie"],
         },
         {
           name: "ASDB",
@@ -280,33 +280,70 @@
           name: "cPresser",
           slug: "cPresser",
           summary: "A lossless C compression tool with a CMake build and interactive CLI. It tests Delta XOR, RLE, Huffman, and LZ77 stages, then keeps only the passes that actually shrink the file.",
-          meta: ["C", "solo project"],
+          meta: ["C", "CMake", "solo project"],
+        },
+        {
+          name: "Shadow Monsters",
+          slug: "shadow-monsters",
+          hasWebsite: false,
+          hasGithub: false,
+          summary: "A terminal survival game written entirely in RISC-V assembly, with dynamically sized boards, stack-managed game objects, a hand-implemented Xorshift32 PRNG, scaling monster spawns, pursuit logic, resource collection, traps, and fear-based win and loss states.",
+          meta: ["RISC-V Assembly", "school project"],
+        },
+        {
+          name: "Custom Shell",
+          slug: "custom_shell",
+          hasWebsite: false,
+          hasGithub: false,
+          summary: "A Unix-like shell written in C with variable expansion, multi-stage pipelines, background process tracking, signal handling, external program execution, and built-ins including ls, cd, cat, wc, ps, and kill, plus TCP client-server messaging.",
+          meta: ["C", "POSIX", "school project"],
+        },
+        {
+          name: "Paint",
+          slug: "paint",
+          hasWebsite: false,
+          hasGithub: false,
+          summary: "A JavaFX paint application built with MVC and strategy patterns, featuring tabbed and layered canvases, shape and freehand tools, bucket fill, move, delete, rotation, opacity and thickness controls, color history, and color-blind modes.",
+          meta: ["Java", "JavaFX", "school project"],
+        },
+        {
+          name: "Othello",
+          slug: "othello",
+          hasWebsite: false,
+          hasGithub: false,
+          summary: "A unit-tested Java Othello engine with human, random, and greedy players, automated match simulation, and a statistical analyzer using bootstrap confidence intervals and randomization-test p-values to measure first-player advantage.",
+          meta: ["Java", "JUnit", "school project"],
         },
         {
           name: "Space Invaders",
           slug: "SpaceInvaders",
           summary: "A Pygame arcade shooter with custom sprites, 8-direction movement, scaling enemy waves, timed power-ups, and SQLite-backed users, profiles, friends, and leaderboards.",
-          meta: ["Python 3.11", "with Averi Wylie"],
+          meta: ["Python 3.11", "Pygame", "SQLite", "with Averi Wylie"],
         },
       ];
 
       const projectUrl = (slug) => `https://shahyaranfaz.github.io/${slug}/`;
       const githubUrl = (slug) => `https://github.com/shahyaranfaz/${slug}`;
+      const unavailableLink = (label, message) => `
+        <span class="unavailable-link" tabindex="0">
+          ${label}
+          <span class="tooltip" role="status">${message}</span>
+        </span>
+      `;
 
       document.querySelector("#projects").innerHTML = projects
         .map(
-          ({ name, slug, hasWebsite = true, summary, meta }) => `
+          ({ name, slug, hasWebsite = true, hasGithub = true, summary, meta }) => `
             <article>
               <div class="project-head">
                 <h3>${name}</h3>
                 <div class="links">
                   ${hasWebsite
                     ? `<a href="${projectUrl(slug)}">Website</a>`
-                    : `<span class="unavailable-link" tabindex="0">
-                         Website
-                         <span class="tooltip" role="status">does not exist</span>
-                       </span>`}
-                  <a href="${githubUrl(slug)}">GitHub</a>
+                    : unavailableLink("Website", "does not exist")}
+                  ${hasGithub
+                    ? `<a href="${githubUrl(slug)}">GitHub</a>`
+                    : unavailableLink("GitHub", "available on request")}
                 </div>
               </div>
               <p class="summary">${summary}</p>
