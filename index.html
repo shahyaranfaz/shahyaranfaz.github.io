@@ -132,6 +132,48 @@
         text-decoration: underline;
       }
 
+      .unavailable-link {
+        position: relative;
+        border: 0;
+        padding: 0;
+        background: none;
+        color: var(--green);
+        cursor: help;
+        font: inherit;
+      }
+
+      .unavailable-link:hover,
+      .unavailable-link:focus-visible {
+        text-decoration: none;
+      }
+
+      .tooltip {
+        position: absolute;
+        z-index: 1;
+        top: calc(100% + 8px);
+        right: 0;
+        width: max-content;
+        max-width: 180px;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 5px 8px;
+        background: var(--panel);
+        color: var(--text);
+        font-size: 0.76rem;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-3px);
+        transition: opacity 120ms ease, transform 120ms ease;
+        visibility: hidden;
+      }
+
+      .unavailable-link:hover .tooltip,
+      .unavailable-link:focus-visible .tooltip {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+      }
+
       .summary {
         color: var(--muted);
         margin-bottom: 14px;
@@ -228,6 +270,13 @@
           meta: ["C++20", "with Averi Wylie"],
         },
         {
+          name: "ASDB",
+          slug: "asdb",
+          hasWebsite: false,
+          summary: "A dependency-free, from-scratch Rust document database featuring persistent collections, B-tree indexes, schema validation, query planning, and execution. Designed around the custom language ASL.",
+          meta: ["WIP", "Rust", "with Averi Wylie"],
+        },
+        {
           name: "cPresser",
           slug: "cPresser",
           summary: "A lossless C compression tool with a CMake build and interactive CLI. It tests Delta XOR, RLE, Huffman, and LZ77 stages, then keeps only the passes that actually shrink the file.",
@@ -246,12 +295,17 @@
 
       document.querySelector("#projects").innerHTML = projects
         .map(
-          ({ name, slug, summary, meta }) => `
+          ({ name, slug, hasWebsite = true, summary, meta }) => `
             <article>
               <div class="project-head">
                 <h3>${name}</h3>
                 <div class="links">
-                  <a href="${projectUrl(slug)}">Website</a>
+                  ${hasWebsite
+                    ? `<a href="${projectUrl(slug)}">Website</a>`
+                    : `<span class="unavailable-link" tabindex="0">
+                         Website
+                         <span class="tooltip" role="status">does not exist</span>
+                       </span>`}
                   <a href="${githubUrl(slug)}">GitHub</a>
                 </div>
               </div>
@@ -261,6 +315,7 @@
           `,
         )
         .join("");
+
     </script>
   </body>
 </html>
