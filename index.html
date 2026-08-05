@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Shahyar Anfaz</title>
+    <title>Shahyar Anfaz's Portfolio</title>
     <meta
       name="description"
       content="Portfolio of Shahyar Anfaz, a Computer Science and Mathematics student at the University of Toronto."
@@ -195,7 +195,7 @@
         <p class="eyebrow">portfolio / shahyar anfaz</p>
         <h1>Shahyar Anfaz</h1>
         <p class="intro">
-          I am a second-year University of Toronto student studying Computer Science and Mathematics.
+          I am a third-year University of Toronto student studying Computer Science and Mathematics.
           I build high-performance systems software, from chess engines and NNUE training pipelines to 
           databases, compilers, and low-level tooling.
         </p>
@@ -203,64 +203,7 @@
 
       <section aria-labelledby="projects-title">
         <h2 id="projects-title">Featured Projects</h2>
-        <div class="projects">
-          <article>
-            <div class="project-head">
-              <h3>Space Invaders</h3>
-              <div class="links">
-                <a href="https://shahyaranfaz.github.io/SpaceInvaders/">Live</a>
-                <a href="https://github.com/shahyaranfaz/SpaceInvaders">GitHub</a>
-              </div>
-            </div>
-            <p class="summary">
-              A Pygame arcade shooter with custom sprites, 8-direction movement,
-              scaling enemy waves, timed power-ups, and SQLite-backed users,
-              profiles, friends, and leaderboards.
-            </p>
-            <ul class="meta">
-              <li>Python 3.11</li>
-              <li>with Averi Wylie</li>
-            </ul>
-          </article>
-
-          <article>
-            <div class="project-head">
-              <h3>cPresser</h3>
-              <div class="links">
-                <a href="https://shahyaranfaz.github.io/cPresser/">Live</a>
-                <a href="https://github.com/shahyaranfaz/cPresser">GitHub</a>
-              </div>
-            </div>
-            <p class="summary">
-              A lossless C compression tool with a CMake build and interactive
-              CLI. It tests Delta XOR, RLE, Huffman, and LZ77 stages, then keeps
-              only the passes that actually shrink the file.
-            </p>
-            <ul class="meta">
-              <li>C</li>
-              <li>solo project</li>
-            </ul>
-          </article>
-
-          <article>
-            <div class="project-head">
-              <h3>SHAYVERI</h3>
-              <div class="links">
-                <a href="https://shahyaranfaz.github.io/SHAYVERI/">Live</a>
-                <a href="https://github.com/shahyaranfaz/SHAYVERI">GitHub</a>
-              </div>
-            </div>
-            <p class="summary">
-              A UCI-compliant C++20 chess engine with alpha-beta search, Lazy
-              SMP, opening-book support, handcrafted evaluation, and a stronger
-              NNUE path tested over 3000 pool-relative Elo.
-            </p>
-            <ul class="meta">
-              <li>C++20</li>
-              <li>with Averi Wylie</li>
-            </ul>
-          </article>
-        </div>
+        <div class="projects" id="projects"></div>
       </section>
 
       <section aria-labelledby="contact-title">
@@ -276,5 +219,48 @@
         <p>© Shahyar Anfaz</p>
       </footer>
     </main>
+    <script>
+      const projects = [
+        {
+          name: "SHAYVERI",
+          slug: "SHAYVERI",
+          summary: "A UCI-compliant C++20 chess engine with an extended alpha-beta search, Lazy SMP, a custom opening-book, and an NNUE evaluation that reaches 3300 pool-relative Elo.",
+          meta: ["C++20", "with Averi Wylie"],
+        },
+        {
+          name: "cPresser",
+          slug: "cPresser",
+          summary: "A lossless C compression tool with a CMake build and interactive CLI. It tests Delta XOR, RLE, Huffman, and LZ77 stages, then keeps only the passes that actually shrink the file.",
+          meta: ["C", "solo project"],
+        },
+        {
+          name: "Space Invaders",
+          slug: "SpaceInvaders",
+          summary: "A Pygame arcade shooter with custom sprites, 8-direction movement, scaling enemy waves, timed power-ups, and SQLite-backed users, profiles, friends, and leaderboards.",
+          meta: ["Python 3.11", "with Averi Wylie"],
+        },
+      ];
+
+      const projectUrl = (slug) => `https://shahyaranfaz.github.io/${slug}/`;
+      const githubUrl = (slug) => `https://github.com/shahyaranfaz/${slug}`;
+
+      document.querySelector("#projects").innerHTML = projects
+        .map(
+          ({ name, slug, summary, meta }) => `
+            <article>
+              <div class="project-head">
+                <h3>${name}</h3>
+                <div class="links">
+                  <a href="${projectUrl(slug)}">Website</a>
+                  <a href="${githubUrl(slug)}">GitHub</a>
+                </div>
+              </div>
+              <p class="summary">${summary}</p>
+              <ul class="meta">${meta.map((item) => `<li>${item}</li>`).join("")}</ul>
+            </article>
+          `,
+        )
+        .join("");
+    </script>
   </body>
 </html>

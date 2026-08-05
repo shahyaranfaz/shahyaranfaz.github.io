@@ -1,5 +1,5 @@
 # Shahyar Anfaz
 
-Personal portfolio for selected projects.
+Personal portfolio.
 
 Live site: [shahyaranfaz.github.io](https://shahyaranfaz.github.io)
