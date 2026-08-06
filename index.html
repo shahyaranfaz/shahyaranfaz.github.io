@@ -277,6 +277,14 @@
           meta: ["WIP", "Rust", "with Averi Wylie"],
         },
         {
+          name: "AMP - Agentic Minecraft Player",
+          slug: "AMP",
+          owner: "AveriWylie",
+          hasWebsite: false,
+          summary: "An autonomous Python Minecraft agent that implements the binary protocol over raw TCP, maintains a live world model from parsed chunk and NBT data, uses A* pathfinding, and turns natural-language goals into closed-loop navigation, mining, building, and interaction plans through Claude.",
+          meta: ["WIP", "Python", "Minecraft Protocol", "Claude API", "with Averi Wylie"],
+        },
+        {
           name: "cPresser",
           slug: "cPresser",
           summary: "A lossless C compression tool with a CMake build and interactive CLI. It tests Delta XOR, RLE, Huffman, and LZ77 stages, then keeps only the passes that actually shrink the file.",
@@ -323,7 +331,7 @@
       ];
 
       const projectUrl = (slug) => `https://shahyaranfaz.github.io/${slug}/`;
-      const githubUrl = (slug) => `https://github.com/shahyaranfaz/${slug}`;
+      const githubUrl = (slug, owner = "shahyaranfaz") => `https://github.com/${owner}/${slug}`;
       const unavailableLink = (label, message) => `
         <span class="unavailable-link" tabindex="0">
           ${label}
@@ -333,7 +341,7 @@
 
       document.querySelector("#projects").innerHTML = projects
         .map(
-          ({ name, slug, hasWebsite = true, hasGithub = true, summary, meta }) => `
+          ({ name, slug, owner, hasWebsite = true, hasGithub = true, summary, meta }) => `
             <article>
               <div class="project-head">
                 <h3>${name}</h3>
@@ -342,7 +350,7 @@
                     ? `<a href="${projectUrl(slug)}">Website</a>`
                     : unavailableLink("Website", "does not exist")}
                   ${hasGithub
-                    ? `<a href="${githubUrl(slug)}">GitHub</a>`
+                    ? `<a href="${githubUrl(slug, owner)}">GitHub</a>`
                     : unavailableLink("GitHub", "available on request")}
                 </div>
               </div>
