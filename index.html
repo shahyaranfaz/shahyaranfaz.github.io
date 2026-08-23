@@ -8,6 +8,15 @@
       name="description"
       content="Portfolio of Shahyar Anfaz, a Computer Science and Mathematics student at the University of Toronto."
     >
+    <link rel="canonical" href="https://shahyaranfaz.github.io/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Shahyar Anfaz — Systems, Software, and Machine Learning">
+    <meta property="og:description" content="Projects in performance engineering, systems software, databases, and machine learning by Shahyar Anfaz.">
+    <meta property="og:url" content="https://shahyaranfaz.github.io/">
+    <meta property="og:image" content="https://github.com/shahyaranfaz.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Shahyar Anfaz — Systems, Software, and Machine Learning">
+    <meta name="twitter:description" content="Projects in performance engineering, systems software, databases, and machine learning.">
     <style>
       :root {
         --bg: #050705;
@@ -243,9 +252,19 @@
         </p>
       </header>
 
-      <section aria-labelledby="projects-title">
-        <h2 id="projects-title">Featured Projects</h2>
-        <div class="projects" id="projects"></div>
+      <section aria-labelledby="featured-title">
+        <h2 id="featured-title">Featured Projects</h2>
+        <div class="projects" id="featured-projects"></div>
+      </section>
+
+      <section aria-labelledby="development-title">
+        <h2 id="development-title">In Development</h2>
+        <div class="projects" id="development-projects"></div>
+      </section>
+
+      <section aria-labelledby="additional-title">
+        <h2 id="additional-title">Additional Projects</h2>
+        <div class="projects" id="additional-projects"></div>
       </section>
 
       <section aria-labelledby="contact-title">
@@ -266,7 +285,7 @@
         {
           name: "SHAYVERI",
           slug: "SHAYVERI",
-          summary: "A UCI-compliant C++20 chess engine with an extended alpha-beta search, Lazy SMP, a custom opening-book, and an NNUE evaluation that reaches 3300 pool-relative Elo.",
+          summary: "A UCI-compliant C++20 chess engine with an extended alpha-beta search, Lazy SMP, a custom opening-book, and an NNUE evaluation that reaches approximately 3300 pool-relative Elo at 90+0.5.",
           meta: ["C++20", "NNUE", "UCI", "with Averi Wylie"],
         },
         {
@@ -345,27 +364,46 @@
         </span>
       `;
 
-      document.querySelector("#projects").innerHTML = projects
-        .map(
-          ({ name, slug, owner, hasWebsite = true, hasGithub = true, summary, meta }) => `
-            <article>
-              <div class="project-head">
-                <h3>${name}</h3>
-                <div class="links">
-                  ${hasWebsite
-                    ? `<a href="${projectUrl(slug)}">Website</a>`
-                    : unavailableLink("Website", "does not exist")}
-                  ${hasGithub
-                    ? `<a href="${githubUrl(slug, owner)}">GitHub</a>`
-                    : unavailableLink("GitHub", "available on request")}
-                </div>
-              </div>
-              <p class="summary">${summary}</p>
-              <ul class="meta">${meta.map((item) => `<li>${item}</li>`).join("")}</ul>
-            </article>
-          `,
-        )
-        .join("");
+      const projectGroups = [
+        {
+          selector: "#featured-projects",
+          names: ["SHAYVERI", "U of T Waitlist Oracle", "cPresser", "Shadow Monsters"],
+        },
+        {
+          selector: "#development-projects",
+          names: ["asdb", "AMP - Agentic Minecraft Player"],
+        },
+        {
+          selector: "#additional-projects",
+          names: ["Custom Shell", "Paint", "Othello", "Space Invaders"],
+        },
+      ];
+
+      const projectCard = ({ name, slug, owner, hasWebsite = true, hasGithub = true, summary, meta }) => `
+        <article>
+          <div class="project-head">
+            <h3>${name}</h3>
+            <div class="links">
+              ${hasWebsite
+                ? `<a href="${projectUrl(slug)}">Website</a>`
+                : unavailableLink("Website", "does not exist")}
+              ${hasGithub
+                ? `<a href="${githubUrl(slug, owner)}">GitHub</a>`
+                : unavailableLink("GitHub", "available on request")}
+            </div>
+          </div>
+          <p class="summary">${summary}</p>
+          <ul class="meta">${meta.map((item) => `<li>${item}</li>`).join("")}</ul>
+        </article>
+      `;
+
+      for (const { selector, names } of projectGroups) {
+        document.querySelector(selector).innerHTML = names
+          .map((name) => projects.find((project) => project.name === name))
+          .filter(Boolean)
+          .map(projectCard)
+          .join("");
+      }
 
     </script>
   </body>
