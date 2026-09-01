@@ -305,7 +305,7 @@
           name: "AMP - Agentic Minecraft Player",
           slug: "AMP",
           owner: "AveriWylie",
-          hasWebsite: false,
+          websiteUrl: "https://averiwylie.github.io/AMP/",
           summary: "A released Python Minecraft agent that implements the Java Edition protocol over raw TCP, builds live world state from chunk, entity, and inventory packets, and executes guided or autonomous goals through A* navigation, mining, block placement, and combat. Version 1.0 supports Minecraft Java 26.1 through 26.2 with Anthropic and OpenAI-compatible model providers.",
           meta: ["v1.0", "Python", "Minecraft Protocol", "LLM Planning", "with Averi Wylie"],
         },
@@ -379,13 +379,13 @@
         },
       ];
 
-      const projectCard = ({ name, slug, owner, hasWebsite = true, hasGithub = true, summary, meta }) => `
+      const projectCard = ({ name, slug, owner, websiteUrl, hasWebsite = true, hasGithub = true, summary, meta }) => `
         <article>
           <div class="project-head">
             <h3>${name}</h3>
             <div class="links">
               ${hasWebsite
-                ? `<a href="${projectUrl(slug)}">Website</a>`
+                ? `<a href="${websiteUrl || projectUrl(slug)}">Website</a>`
                 : unavailableLink("Website", "does not exist")}
               ${hasGithub
                 ? `<a href="${githubUrl(slug, owner)}">GitHub</a>`
