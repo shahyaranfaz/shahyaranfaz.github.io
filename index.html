@@ -141,6 +141,11 @@
         text-decoration: underline;
       }
 
+      a:focus-visible {
+        outline: 2px solid var(--green);
+        outline-offset: 3px;
+      }
+
       .unavailable-link {
         position: relative;
         border: 0;
@@ -153,7 +158,7 @@
 
       .unavailable-link:hover,
       .unavailable-link:focus-visible {
-        text-decoration: none;
+        text-decoration: underline;
       }
 
       .tooltip {
@@ -246,9 +251,9 @@
         <p class="eyebrow">portfolio / shahyar anfaz</p>
         <h1>Shahyar Anfaz</h1>
         <p class="intro">
-          I am a third-year University of Toronto student studying Computer Science and Mathematics.
-          I build high-performance systems software, from chess engines and NNUE training pipelines to 
-          databases, compilers, and low-level tooling.
+          I am a University of Toronto Computer Science specialist and Mathematics minor. I build
+          performance-critical software from the storage layer up: chess engines, databases,
+          machine-learning pipelines, networked agents, and low-level tools.
         </p>
       </header>
 
@@ -285,21 +290,21 @@
         {
           name: "SHAYVERI",
           slug: "SHAYVERI",
-          summary: "A UCI-compliant C++20 chess engine with an extended alpha-beta search, Lazy SMP, a custom opening book, and NNUE evaluation rated 3261 at 10+0.1 and 3321 at 90+0.5 in controlled, pool-relative testing.",
+          summary: "A UCI-compliant C++20 chess engine pairing multithreaded alpha-beta search with incrementally updated NNUE evaluation and bit-identical AVX2 inference. Rated 3261 at 10+0.1 and 3321 at 90+0.5 in controlled, pool-relative testing.",
           meta: ["v2.10.0", "C++20", "NNUE", "UCI", "with Averi Wylie"],
         },
         {
           name: "U of T Waitlist Oracle",
           slug: "UofTWaitlistOracle",
-          summary: "A browser-based U of T waitlist predictor combining live lecture queues, historical enrollment data, and calibrated, season-specific histogram gradient-boosted tree models. In chronological evaluation, it achieved 97.4% Fall/Winter and 93.6% Summer accuracy, cutting Brier error by 58.1% and 36.2% respectively versus a fitted rank-to-capacity baseline.",
+          summary: "A browser-based predictor combining live U of T waitlist queues with historical enrollment data and calibrated gradient-boosted models. Across locked chronological holdouts, the validated Fall/Winter model achieved 97.4% accuracy; the experimental Summer model achieved 93.6% and is clearly surfaced with its stricter calibration caveat.",
           meta: ["Python", "JavaScript", "Machine Learning", "Gradient Boosting", "solo project"],
         },
         {
           name: "asdb",
           slug: "asdb",
           hasWebsite: false,
-          summary: "A dependency-free, from-scratch Rust document database featuring persistent collections, B-tree indexes, schema validation, query planning, and execution. Designed around the custom language ASL.",
-          meta: ["WIP", "Rust", "with Averi Wylie"],
+          summary: "A dependency-free Rust document database with 4 KiB page storage, a buffer pool, slotted heap files, B-tree indexes, TTL expiry, and a query language implemented from lexer through lazy execution. Its HTTP/JSON and persistent ABP/1 binary interfaces share the same engine, validated by 239 tests and a 1.77M sequential-insert/s benchmark.",
+          meta: ["Rust", "Storage Engine", "Query Processing", "with Averi Wylie"],
         },
         {
           name: "AMP - Agentic Minecraft Player",
@@ -312,7 +317,7 @@
         {
           name: "cPresser",
           slug: "cPresser",
-          summary: "A lossless C compression tool with a CMake build and interactive CLI. It tests Delta XOR, RLE, Huffman, and LZ77 stages, then keeps only the passes that actually shrink the file.",
+          summary: "A lossless C compression tool that adaptively combines delta encoding, RLE, Huffman coding, and LZ77, preserving only stages that shrink the output. A reproducible, hash-verified benchmark reduced the 211.9 MB Silesia corpus by 46.97%.",
           meta: ["C", "CMake", "solo project"],
         },
         {
@@ -351,19 +356,18 @@
           name: "Space Invaders",
           slug: "SpaceInvaders",
           summary: "A Pygame arcade shooter with custom sprites, 8-direction movement, scaling enemy waves, timed power-ups, and SQLite-backed users, profiles, friends, and leaderboards.",
-          meta: ["Python 3.11", "Pygame", "SQLite", "with Averi Wylie"],
+          meta: ["Python", "Pygame", "SQLite", "with Averi Wylie"],
         },
       ];
 
       const projectUrl = (slug) => `https://shahyaranfaz.github.io/${slug}/`;
       const githubUrl = (slug, owner = "shahyaranfaz") => `https://github.com/${owner}/${slug}`;
       const unavailableLink = (label, message) => `
-        <span class="unavailable-link" tabindex="0">
+        <button class="unavailable-link" type="button" aria-label="${label}: ${message}">
           ${label}
-          <span class="tooltip" role="status">${message}</span>
-        </span>
+          <span class="tooltip" role="tooltip">${message}</span>
+        </button>
       `;
-
       const projectGroups = [
         {
           selector: "#independent-projects",
@@ -386,7 +390,7 @@
             <div class="links">
               ${hasWebsite
                 ? `<a href="${websiteUrl || projectUrl(slug)}">Website</a>`
-                : unavailableLink("Website", "does not exist")}
+                : ""}
               ${hasGithub
                 ? `<a href="${githubUrl(slug, owner)}">GitHub</a>`
                 : unavailableLink("GitHub", "available on request")}
