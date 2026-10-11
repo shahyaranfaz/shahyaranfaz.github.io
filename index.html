@@ -109,6 +109,19 @@
         padding: 18px;
       }
 
+      article.featured {
+        border-color: var(--green);
+        box-shadow: inset 3px 0 0 var(--green);
+        padding: 22px;
+      }
+
+      .status {
+        color: var(--green);
+        font-size: 0.78rem;
+        margin: 0 0 8px;
+        text-transform: uppercase;
+      }
+
       .project-head {
         display: flex;
         align-items: baseline;
@@ -253,13 +266,19 @@
         <p class="intro">
           I am a University of Toronto Computer Science specialist and Mathematics minor. I build
           performance-critical software from the storage layer up: chess engines, databases,
-          machine-learning pipelines, networked agents, and low-level tools.
+          reinforcement-learning infrastructure, machine-learning pipelines, networked agents, and
+          low-level tools.
         </p>
       </header>
 
-      <section aria-labelledby="independent-title">
-        <h2 id="independent-title">Independent Projects</h2>
-        <div class="projects" id="independent-projects"></div>
+      <section aria-labelledby="industry-title">
+        <h2 id="industry-title">Industry Project</h2>
+        <div class="projects" id="industry-projects"></div>
+      </section>
+
+      <section aria-labelledby="personal-title">
+        <h2 id="personal-title">Personal Projects</h2>
+        <div class="projects" id="personal-projects"></div>
       </section>
 
       <section aria-labelledby="development-title">
@@ -287,6 +306,17 @@
     </main>
     <script>
       const projects = [
+        {
+          name: "AMD Schola for Godot",
+          featured: true,
+          status: "AMD-sponsored U of T capstone / in development",
+          links: [
+            { label: "Project Repository", url: "https://github.com/csc301-2026-f/20-AMD-Schola" },
+            { label: "AMD Schola", url: "https://gpuopen.com/amd-schola/" },
+          ],
+          summary: "Working on a 7-person team in partnership with AMD to port the open-source Schola reinforcement-learning toolkit to Godot 4.7. I own the episode-lifecycle workstream, designing C++ and gRPC coordination for observations, actions, rewards, terminal states, resets, multiple environments, and 3 auto-reset modes, with integration tests targeting deadlocks and cross-episode state leakage.",
+          meta: ["C++", "Godot 4.7", "gRPC", "Protocol Buffers", "Reinforcement Learning", "7-person team"],
+        },
         {
           name: "SHAYVERI",
           slug: "SHAYVERI",
@@ -370,7 +400,11 @@
       `;
       const projectGroups = [
         {
-          selector: "#independent-projects",
+          selector: "#industry-projects",
+          names: ["AMD Schola for Godot"],
+        },
+        {
+          selector: "#personal-projects",
           names: ["SHAYVERI", "U of T Waitlist Oracle", "AMP - Agentic Minecraft Player", "cPresser", "Space Invaders"],
         },
         {
@@ -383,17 +417,20 @@
         },
       ];
 
-      const projectCard = ({ name, slug, owner, websiteUrl, hasWebsite = true, hasGithub = true, summary, meta }) => `
-        <article>
+      const projectCard = ({ name, slug, owner, websiteUrl, hasWebsite = true, hasGithub = true, links, featured = false, status, summary, meta }) => `
+        <article${featured ? ' class="featured"' : ""}>
+          ${status ? `<p class="status">${status}</p>` : ""}
           <div class="project-head">
             <h3>${name}</h3>
             <div class="links">
-              ${hasWebsite
-                ? `<a href="${websiteUrl || projectUrl(slug)}">Website</a>`
-                : ""}
-              ${hasGithub
-                ? `<a href="${githubUrl(slug, owner)}">GitHub</a>`
-                : unavailableLink("GitHub", "available on request")}
+              ${links
+                ? links.map(({ label, url }) => `<a href="${url}">${label}</a>`).join("")
+                : `${hasWebsite
+                    ? `<a href="${websiteUrl || projectUrl(slug)}">Website</a>`
+                    : ""}
+                  ${hasGithub
+                    ? `<a href="${githubUrl(slug, owner)}">GitHub</a>`
+                    : unavailableLink("GitHub", "available on request")}`}
             </div>
           </div>
           <p class="summary">${summary}</p>
