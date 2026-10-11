@@ -46,7 +46,7 @@
       }
 
       main {
-        width: min(760px, calc(100% - 32px));
+        width: min(1040px, calc(100% - 32px));
         margin: 0 auto;
         padding: 72px 0;
       }
@@ -81,6 +81,7 @@
         color: var(--muted);
         font-size: 1rem;
         margin-bottom: 0;
+        max-width: 760px;
       }
 
       section {
@@ -100,6 +101,11 @@
       .projects {
         display: grid;
         gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+
+      #industry-projects {
+        grid-template-columns: 1fr;
       }
 
       article {
@@ -206,6 +212,33 @@
         margin-bottom: 14px;
       }
 
+      .summary.collapsed {
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+      }
+
+      .summary.expanded {
+        display: block;
+      }
+
+      .summary-toggle {
+        border: 0;
+        padding: 0;
+        margin: -6px 0 14px;
+        background: none;
+        color: var(--green);
+        cursor: pointer;
+        font: inherit;
+        font-size: 0.82rem;
+      }
+
+      .summary-toggle:hover,
+      .summary-toggle:focus-visible {
+        text-decoration: underline;
+      }
+
       .meta {
         display: flex;
         flex-wrap: wrap;
@@ -240,7 +273,7 @@
 
       @media (max-width: 560px) {
         main {
-          width: min(100% - 24px, 760px);
+          width: calc(100% - 24px);
           padding: 44px 0;
         }
 
@@ -272,7 +305,7 @@
       </header>
 
       <section aria-labelledby="industry-title">
-        <h2 id="industry-title">Industry Project</h2>
+        <h2 id="industry-title">Industry Projects</h2>
         <div class="projects" id="industry-projects"></div>
       </section>
 
@@ -316,6 +349,14 @@
           ],
           summary: "Working on a 7-person team in partnership with AMD to port the open-source Schola reinforcement-learning toolkit to Godot 4.7. I own the episode-lifecycle workstream, designing C++ and gRPC coordination for observations, actions, rewards, terminal states, resets, multiple environments, and 3 auto-reset modes, with integration tests targeting deadlocks and cross-episode state leakage.",
           meta: ["C++", "Godot 4.7", "gRPC", "Protocol Buffers", "Reinforcement Learning", "7-person team"],
+        },
+        {
+          name: "skern",
+          slug: "skern",
+          hasWebsite: false,
+          status: "Early development",
+          summary: "A hobby x86-64 operating system with a custom UEFI bootloader, freestanding C++ kernel, C library, userspace utilities, and Python host and integration tests.",
+          meta: ["C", "C++", "x86-64 Assembly", "UEFI", "Kernel", "solo project"],
         },
         {
           name: "SHAYVERI",
@@ -409,7 +450,7 @@
         },
         {
           selector: "#development-projects",
-          names: ["asdb"],
+          names: ["skern", "asdb"],
         },
         {
           selector: "#course-projects",
@@ -433,7 +474,8 @@
                     : unavailableLink("GitHub", "available on request")}`}
             </div>
           </div>
-          <p class="summary">${summary}</p>
+          <p class="summary${featured ? "" : " collapsed"}">${summary}</p>
+          ${featured ? "" : '<button class="summary-toggle" type="button" aria-expanded="false">More</button>'}
           <ul class="meta">${meta.map((item) => `<li>${item}</li>`).join("")}</ul>
         </article>
       `;
@@ -444,6 +486,21 @@
           .filter(Boolean)
           .map(projectCard)
           .join("");
+      }
+
+      for (const button of document.querySelectorAll(".summary-toggle")) {
+        const summary = button.previousElementSibling;
+        if (summary.scrollHeight <= summary.clientHeight + 1) {
+          button.hidden = true;
+          continue;
+        }
+
+        button.addEventListener("click", () => {
+          const expanded = summary.classList.toggle("expanded");
+          summary.classList.toggle("collapsed", !expanded);
+          button.setAttribute("aria-expanded", String(expanded));
+          button.textContent = expanded ? "Less" : "More";
+        });
       }
 
     </script>
