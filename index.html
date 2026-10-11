@@ -487,9 +487,11 @@
                     : unavailableLink("GitHub", "available on request")}`}
             </div>
           </div>
-          <p class="summary" data-summary="short">${shortSummary}</p>
-          <p class="summary" data-summary="full" hidden>${summary}</p>
-          <button class="summary-toggle" type="button" aria-expanded="false" aria-label="Show full project description" title="Show full description">&#8595;</button>
+          ${featured
+            ? `<p class="summary">${summary}</p>`
+            : `<p class="summary" data-summary="short">${shortSummary}</p>
+               <p class="summary" data-summary="full" hidden>${summary}</p>
+               <button class="summary-toggle" type="button" aria-expanded="false" aria-label="Show full project description" title="Show full description">&#8595;</button>`}
           <ul class="meta">${meta.map((item) => `<li>${item}</li>`).join("")}</ul>
         </article>
       `;
