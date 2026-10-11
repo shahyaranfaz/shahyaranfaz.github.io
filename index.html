@@ -207,31 +207,37 @@
         margin-bottom: 14px;
       }
 
-      .summary.collapsed {
-        display: -webkit-box;
-        overflow: hidden;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3;
-      }
-
-      .summary.expanded {
-        display: block;
+      .summary[hidden] {
+        display: none;
       }
 
       .summary-toggle {
-        border: 0;
+        align-items: center;
+        display: flex;
+        height: 30px;
+        justify-content: center;
+        width: 34px;
+        border: 1px solid var(--line);
+        border-radius: 4px;
         padding: 0;
-        margin: -6px 0 14px;
-        background: none;
+        margin: -7px 0 12px auto;
+        background: var(--bg);
         color: var(--green);
         cursor: pointer;
         font: inherit;
-        font-size: 0.82rem;
+        font-size: 1.15rem;
+        line-height: 1;
       }
 
       .summary-toggle:hover,
       .summary-toggle:focus-visible {
-        text-decoration: underline;
+        background: var(--line);
+        border-color: var(--green);
+      }
+
+      .summary-toggle:focus-visible {
+        outline: 2px solid var(--green);
+        outline-offset: 2px;
       }
 
       .meta {
@@ -342,6 +348,7 @@
             { label: "Website", url: "https://gpuopen.com/amd-schola/" },
             { label: "GitHub", url: "https://github.com/csc301-2026-f/20-AMD-Schola" },
           ],
+          shortSummary: "Porting AMD Schola's reinforcement-learning infrastructure to Godot.",
           summary: "Working on a 7-person team in partnership with AMD to port the open-source Schola reinforcement-learning toolkit to Godot 4.7. I own the episode-lifecycle workstream, designing C++ and gRPC coordination for observations, actions, rewards, terminal states, resets, multiple environments, and 3 auto-reset modes, with integration tests targeting deadlocks and cross-episode state leakage.",
           meta: ["C++", "Godot 4.7", "gRPC", "Protocol Buffers", "Reinforcement Learning", "7-person team"],
         },
@@ -350,18 +357,21 @@
           slug: "skern",
           hasWebsite: false,
           status: "Early development",
+          shortSummary: "A hobby x86-64 OS built from a custom UEFI bootloader to userspace.",
           summary: "A hobby x86-64 operating system with a custom UEFI bootloader, freestanding C++ kernel, C library, userspace utilities, and Python host and integration tests.",
           meta: ["C", "C++", "x86-64 Assembly", "UEFI", "Kernel", "solo project"],
         },
         {
           name: "SHAYVERI",
           slug: "SHAYVERI",
+          shortSummary: "A C++ chess engine with multithreaded search and NNUE evaluation.",
           summary: "A UCI-compliant C++20 chess engine pairing multithreaded alpha-beta search with incrementally updated NNUE evaluation and bit-identical AVX2 inference. Rated 3261 at 10+0.1 and 3321 at 90+0.5 in controlled, pool-relative testing.",
           meta: ["v2.10.1", "C++20", "NNUE", "UCI", "with Averi Wylie"],
         },
         {
           name: "U of T Waitlist Oracle",
           slug: "UofTWaitlistOracle",
+          shortSummary: "A calibrated predictor for U of T course waitlist admission.",
           summary: "A browser-based predictor combining live U of T waitlist queues with historical enrollment data and calibrated gradient-boosted models. Across locked chronological holdouts, the validated Fall/Winter model achieved 97.4% accuracy; the experimental Summer model achieved 93.6% and is clearly surfaced with its stricter calibration caveat.",
           meta: ["Python", "JavaScript", "Machine Learning", "Gradient Boosting", "solo project"],
         },
@@ -369,6 +379,7 @@
           name: "asdb",
           slug: "asdb",
           hasWebsite: false,
+          shortSummary: "A Rust database with custom storage, indexing, and query execution.",
           summary: "A dependency-free Rust document database with 4 KiB page storage, a buffer pool, slotted heap files, B-tree indexes, TTL expiry, and a query language implemented from lexer through lazy execution. Its HTTP/JSON and persistent ABP/1 binary interfaces share the same engine, validated by 239 tests and a 1.77M sequential-insert/s benchmark.",
           meta: ["Rust", "Storage Engine", "Query Processing", "with Averi Wylie"],
         },
@@ -377,12 +388,14 @@
           slug: "AMP",
           owner: "AveriWylie",
           websiteUrl: "https://averiwylie.github.io/AMP/",
+          shortSummary: "A Minecraft agent turning language-model plans into verified actions.",
           summary: "A released Python Minecraft agent that implements the Java Edition protocol over raw TCP, builds live world state from chunk, entity, and inventory packets, and executes guided or autonomous goals through A* navigation, mining, block placement, and combat. Version 1.0 supports Minecraft Java 26.1 through 26.2 with Anthropic and OpenAI-compatible model providers.",
           meta: ["v1.0", "Python", "Minecraft Protocol", "LLM Planning", "with Averi Wylie"],
         },
         {
           name: "cPresser",
           slug: "cPresser",
+          shortSummary: "A C compressor that keeps only size-reducing transformation stages.",
           summary: "A lossless C compression tool that adaptively combines delta encoding, RLE, Huffman coding, and LZ77, preserving only stages that shrink the output. A reproducible, hash-verified benchmark reduced the 211.9 MB Silesia corpus by 46.97%.",
           meta: ["C", "CMake", "solo project"],
         },
@@ -391,6 +404,7 @@
           slug: "shadow-monsters",
           hasWebsite: false,
           hasGithub: false,
+          shortSummary: "A RISC-V survival game with procedural threats and resource strategy.",
           summary: "A terminal survival game written entirely in RISC-V assembly, with dynamically sized boards, stack-managed game objects, a hand-implemented Xorshift32 PRNG, scaling monster spawns, pursuit logic, resource collection, traps, and fear-based win and loss states.",
           meta: ["RISC-V Assembly", "school project"],
         },
@@ -399,6 +413,7 @@
           slug: "custom_shell",
           hasWebsite: false,
           hasGithub: false,
+          shortSummary: "A C shell with pipelines, job control, signals, and TCP messaging.",
           summary: "A Unix-like shell written in C with variable expansion, multi-stage pipelines, background process tracking, signal handling, external program execution, and built-ins including ls, cd, cat, wc, ps, and kill, plus TCP client-server messaging.",
           meta: ["C", "POSIX", "school project"],
         },
@@ -407,6 +422,7 @@
           slug: "paint",
           hasWebsite: false,
           hasGithub: false,
+          shortSummary: "A layered JavaFX paint app built with MVC and strategy patterns.",
           summary: "A JavaFX paint application built with MVC and strategy patterns, featuring tabbed and layered canvases, shape and freehand tools, bucket fill, move, delete, rotation, opacity and thickness controls, color history, and color-blind modes.",
           meta: ["Java", "JavaFX", "school project"],
         },
@@ -415,12 +431,14 @@
           slug: "othello",
           hasWebsite: false,
           hasGithub: false,
+          shortSummary: "A Java Othello engine that analyzes first-player advantage.",
           summary: "A unit-tested Java Othello engine with human, random, and greedy players, automated match simulation, and a statistical analyzer using bootstrap confidence intervals and randomization-test p-values to measure first-player advantage.",
           meta: ["Java", "JUnit", "school project"],
         },
         {
           name: "Space Invaders",
           slug: "SpaceInvaders",
+          shortSummary: "A Pygame shooter with persistent profiles, friends, and leaderboards.",
           summary: "A Pygame arcade shooter with custom sprites, 8-direction movement, scaling enemy waves, timed power-ups, and SQLite-backed users, profiles, friends, and leaderboards.",
           meta: ["Python", "Pygame", "SQLite", "with Averi Wylie"],
         },
@@ -453,7 +471,7 @@
         },
       ];
 
-      const projectCard = ({ name, slug, owner, websiteUrl, hasWebsite = true, hasGithub = true, links, featured = false, status, summary, meta }) => `
+      const projectCard = ({ name, slug, owner, websiteUrl, hasWebsite = true, hasGithub = true, links, featured = false, status, shortSummary, summary, meta }) => `
         <article${featured ? ' class="featured"' : ""}>
           ${status ? `<p class="status">${status}</p>` : ""}
           <div class="project-head">
@@ -469,8 +487,9 @@
                     : unavailableLink("GitHub", "available on request")}`}
             </div>
           </div>
-          <p class="summary${featured ? "" : " collapsed"}">${summary}</p>
-          ${featured ? "" : '<button class="summary-toggle" type="button" aria-expanded="false">More</button>'}
+          <p class="summary" data-summary="short">${shortSummary}</p>
+          <p class="summary" data-summary="full" hidden>${summary}</p>
+          <button class="summary-toggle" type="button" aria-expanded="false" aria-label="Show full project description" title="Show full description">&#8595;</button>
           <ul class="meta">${meta.map((item) => `<li>${item}</li>`).join("")}</ul>
         </article>
       `;
@@ -484,17 +503,18 @@
       }
 
       for (const button of document.querySelectorAll(".summary-toggle")) {
-        const summary = button.previousElementSibling;
-        if (summary.scrollHeight <= summary.clientHeight + 1) {
-          button.hidden = true;
-          continue;
-        }
+        const card = button.closest("article");
+        const shortSummary = card.querySelector('[data-summary="short"]');
+        const fullSummary = card.querySelector('[data-summary="full"]');
 
         button.addEventListener("click", () => {
-          const expanded = summary.classList.toggle("expanded");
-          summary.classList.toggle("collapsed", !expanded);
+          const expanded = button.getAttribute("aria-expanded") === "false";
+          shortSummary.hidden = expanded;
+          fullSummary.hidden = !expanded;
           button.setAttribute("aria-expanded", String(expanded));
-          button.textContent = expanded ? "Less" : "More";
+          button.setAttribute("aria-label", expanded ? "Show short project description" : "Show full project description");
+          button.title = expanded ? "Show short description" : "Show full description";
+          button.innerHTML = expanded ? "&#8593;" : "&#8595;";
         });
       }
 
