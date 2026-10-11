@@ -46,7 +46,7 @@
       }
 
       main {
-        width: min(1040px, calc(100% - 32px));
+        width: min(760px, calc(100% - 32px));
         margin: 0 auto;
         padding: 72px 0;
       }
@@ -101,11 +101,6 @@
       .projects {
         display: grid;
         gap: 16px;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      }
-
-      #industry-projects {
-        grid-template-columns: 1fr;
       }
 
       article {
@@ -273,7 +268,7 @@
 
       @media (max-width: 560px) {
         main {
-          width: calc(100% - 24px);
+          width: min(100% - 24px, 760px);
           padding: 44px 0;
         }
 
